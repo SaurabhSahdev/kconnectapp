@@ -1,6 +1,6 @@
-package com.practice.jetpackpractice.data.remote
+package com.app.connect.data.remote
 
-import com.practice.jetpackpractice.domain.model.User
+import com.app.connect.domain.model.User
 import kotlinx.coroutines.delay
 
 class MockAuthApi : AuthApi {

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.practice.jetpackpractice.presentation.login.LoginScreen
+import com.app.connect.presentation.login.LoginScreen
 import com.practice.jetpackpractice.presentation.registration.RegisterScreen
 
 @Composable

@@ -1,7 +1,7 @@
-package com.practice.jetpackpractice.data.repository
+package com.app.connect.data.repository
 
-import com.practice.jetpackpractice.data.remote.AuthApi
-import com.practice.jetpackpractice.domain.repository.AuthRepository
+import com.app.connect.data.remote.AuthApi
+import com.app.connect.domain.repository.AuthRepository
 
 class AuthRepositoryImpl(
     private val api: AuthApi

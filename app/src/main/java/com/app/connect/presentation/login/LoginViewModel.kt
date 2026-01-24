@@ -1,14 +1,10 @@
-package com.practice.jetpackpractice.presentation.login
+package com.app.connect.presentation.login
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.practice.jetpackpractice.domain.model.User
-import com.practice.jetpackpractice.domain.usecase.LoginUseCase
-import com.practice.jetpackpractice.presentation.base.BaseViewModel
-import com.practice.jetpackpractice.presentation.base.UiState
+import com.app.connect.domain.model.User
+import com.app.connect.domain.usecase.LoginUseCase
+import com.app.connect.presentation.base.BaseViewModel
+import com.app.connect.presentation.base.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,4 +36,3 @@ class LoginViewModel @Inject constructor(
         }
     }
 }
-

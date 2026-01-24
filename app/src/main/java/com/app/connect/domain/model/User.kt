@@ -1,4 +1,4 @@
-package com.practice.jetpackpractice.domain.model
+package com.app.connect.domain.model
 
 data class User(
     val email: String,

@@ -1,6 +1,6 @@
-package com.practice.jetpackpractice.domain.repository
+package com.app.connect.domain.repository
 
-import com.practice.jetpackpractice.domain.model.User
+import com.app.connect.domain.model.User
 
 interface AuthRepository {
     suspend fun login(email: String, password: String): User

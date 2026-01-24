@@ -1,4 +1,4 @@
-package com.practice.jetpackpractice.presentation.login
+package com.app.connect.presentation.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -23,11 +22,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.practice.jetpackpractice.domain.model.User
-import com.practice.jetpackpractice.presentation.base.UiState
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.app.connect.domain.model.User
+import com.app.connect.presentation.base.UiState
 import com.practice.jetpackpractice.presentation.common.components.LoadingDialog
+
+
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
@@ -58,7 +58,8 @@ fun LoginScreen(
             TextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text("Email") }
+                label = { Text("Email") },
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(Modifier.height(8.dp))
@@ -66,7 +67,8 @@ fun LoginScreen(
             TextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text("Password") }
+                label = { Text("Password") },
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(Modifier.height(16.dp))
@@ -82,7 +84,6 @@ fun LoginScreen(
 
             Spacer(Modifier.height(12.dp))
 
-            // ✅ THIS fixes your error
             TextButton(onClick = onNavigateToRegister) {
                 Text("Don’t have an account? Register")
             }
@@ -91,8 +92,9 @@ fun LoginScreen(
 
             when (uiState) {
                 is UiState.Success -> {
+                    val user = (uiState as UiState.Success<User>).data
                     Text(
-                        text = "Welcome ${(uiState as UiState.Success<User>).data.email}",
+                        text = "Welcome ${user.email}",
                         color = Color.Green
                     )
                 }
@@ -111,7 +113,3 @@ fun LoginScreen(
         }
     }
 }
-
-
-
-

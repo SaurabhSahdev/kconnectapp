@@ -1,4 +1,4 @@
-package com.practice.jetpackpractice.presentation.base
+package com.app.connect.presentation.base
 
 sealed class UiState<out T> {
     object Idle : UiState<Nothing>()

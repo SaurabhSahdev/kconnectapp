@@ -1,4 +1,4 @@
-package com.practice.jetpackpractice.presentation.base
+package com.app.connect.presentation.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
