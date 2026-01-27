@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.app.connect.presentation.LanguageSelectionScreen
+import com.app.connect.presentation.SplashScreen
 import com.app.connect.presentation.login.LoginScreen
 import com.practice.jetpackpractice.presentation.registration.RegisterScreen
 
@@ -11,7 +13,25 @@ import com.practice.jetpackpractice.presentation.registration.RegisterScreen
 fun NavGraph() {
     val navController = rememberNavController()
 
-    NavHost(navController, startDestination = "login") {
+    NavHost(
+        navController = navController,
+        startDestination = "splash"
+    ) {
+
+        composable("splash") {
+            SplashScreen {
+                navController.navigate("language") {
+                    popUpTo("splash") { inclusive = true }
+                }
+            }
+        }
+
+        composable("language") {
+            LanguageSelectionScreen { selectedLang ->
+                // Save language & navigate
+                navController.navigate("login")
+            }
+        }
 
         composable("login") {
             LoginScreen(
@@ -29,5 +49,5 @@ fun NavGraph() {
             )
         }
     }
-
 }
+
