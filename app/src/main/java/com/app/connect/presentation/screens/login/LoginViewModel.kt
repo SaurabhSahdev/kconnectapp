@@ -1,4 +1,4 @@
-package com.app.connect.presentation.login
+package com.app.connect.presentation.screens.login
 
 import androidx.lifecycle.viewModelScope
 import com.app.connect.domain.model.User

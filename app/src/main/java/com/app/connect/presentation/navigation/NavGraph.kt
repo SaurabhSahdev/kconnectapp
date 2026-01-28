@@ -1,13 +1,16 @@
 package com.practice.jetpackpractice.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.app.connect.presentation.LanguageSelectionScreen
+import androidx.navigation.navArgument
+import com.app.connect.presentation.screens.LanguageSelectionScreen
 import com.app.connect.presentation.SplashScreen
-import com.app.connect.presentation.login.LoginScreen
-import com.practice.jetpackpractice.presentation.registration.RegisterScreen
+import com.app.connect.presentation.screens.OtpScreen
+import com.app.connect.presentation.screens.login.LoginScreen
+import com.app.connect.presentation.screens.registration.SignUpScreen
 
 @Composable
 fun NavGraph() {
@@ -35,19 +38,32 @@ fun NavGraph() {
 
         composable("login") {
             LoginScreen(
-                onNavigateToRegister = {
-                    navController.navigate("register")
+                onNavigateToOtp = { phone ->
+                    navController.navigate("otp/$phone")
                 }
             )
         }
 
-        composable("register") {
-            RegisterScreen(
-                onNavigateToLogin = {
-                    navController.popBackStack()
+        composable(
+            route = "otp/{phone}",
+            arguments = listOf(
+                navArgument("phone") { type = NavType.StringType }
+            )
+        ) {
+            OtpScreen(
+                onVerifyClick = {
+                    navController.navigate("signup") {
+                        popUpTo("otp/{phone}") { inclusive = true }
+                    }
                 }
             )
         }
+
+        // Signup Screen
+        composable("signup") {
+            SignUpScreen()
+        }
+
     }
 }
 
