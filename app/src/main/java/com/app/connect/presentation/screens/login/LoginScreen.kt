@@ -24,6 +24,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -112,13 +114,14 @@ fun LoginScreen(
                 Text(
                     text = "Login →",
                     fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                    fontFamily = FontFamily(Font(R.font.popinbold)),
+
+                    )
             }
 
             Spacer(modifier = Modifier.weight(1f))
 
-            // Bottom city illustration (optional)
+            // Bottom city illustration
 //            Image(
 //                painter = painterResource(id = R.drawable.splash_bg),
 //                contentDescription = null,

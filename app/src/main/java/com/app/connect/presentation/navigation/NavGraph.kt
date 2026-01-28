@@ -8,8 +8,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.app.connect.presentation.screens.LanguageSelectionScreen
 import com.app.connect.presentation.SplashScreen
+import com.app.connect.presentation.screens.bottomtabs.CreatePostScreen
 import com.app.connect.presentation.screens.OtpScreen
 import com.app.connect.presentation.screens.login.LoginScreen
+import com.app.connect.presentation.screens.mainscreen.MainScreen
 import com.app.connect.presentation.screens.registration.SignUpScreen
 
 @Composable
@@ -52,16 +54,16 @@ fun NavGraph() {
         ) {
             OtpScreen(
                 onVerifyClick = {
-                    navController.navigate("signup") {
+                    navController.navigate("main") {
                         popUpTo("otp/{phone}") { inclusive = true }
                     }
                 }
             )
         }
 
-        // Signup Screen
-        composable("signup") {
-            SignUpScreen()
+        // Main Screen
+        composable("main") {
+            MainScreen()
         }
 
     }
