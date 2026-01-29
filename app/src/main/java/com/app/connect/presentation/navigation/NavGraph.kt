@@ -42,6 +42,11 @@ fun NavGraph() {
             LoginScreen(
                 onNavigateToOtp = { phone ->
                     navController.navigate("otp/$phone")
+                },
+                onNavigateToSignup = {
+                    navController.navigate("main") {
+                        popUpTo("signup") { inclusive = true }
+                    }
                 }
             )
         }

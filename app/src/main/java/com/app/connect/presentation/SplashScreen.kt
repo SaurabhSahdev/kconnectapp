@@ -27,7 +27,7 @@ fun SplashScreen(
     onNavigateNext: () -> Unit
 ) {
     LaunchedEffect(Unit) {
-        delay(2000) // simulate loading
+        delay(2000)
         onNavigateNext()
     }
 
@@ -37,24 +37,24 @@ fun SplashScreen(
             .background(Color.White)
     ) {
 
-        // Center Logo
+        // Bottom background image
+        Image(
+            painter = painterResource(id = R.drawable.img_splash_bg),
+            contentDescription = null,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth(),
+            contentScale = ContentScale.FillWidth
+        )
+
+        // Center logo (above background)
         Image(
             painter = painterResource(id = R.drawable.ic_logo),
             contentDescription = stringResource(id = R.string.app_name),
             modifier = Modifier.align(Alignment.Center)
         )
 
-        // Bottom Background Image
-        Image(
-            painter = painterResource(id = R.drawable.ic_logo),
-            contentDescription = null,
-            modifier = Modifier
-                .align(Alignment.Center)
-                .fillMaxWidth(),
-            contentScale = ContentScale.Fit
-        )
-
-        // Bottom Copyright Text
+        // Bottom copyright text
         Text(
             text = stringResource(id = R.string.copyright),
             color = Color.Black,
@@ -66,3 +66,4 @@ fun SplashScreen(
         )
     }
 }
+

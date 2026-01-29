@@ -2,6 +2,7 @@ package com.app.connect.presentation.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -86,19 +87,36 @@ fun LanguageSelectionScreen(
 
         Spacer(modifier = Modifier.weight(1f))
 
-        // Next Button
-        Button(
-            onClick = { onNextClick(selectedLanguage) },
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(52.dp),
-            shape = RoundedCornerShape(12.dp)
         ) {
-            Text(
-                text = "Next →",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold
+            // Bottom background image
+            Image(
+                painter = painterResource(id = R.drawable.img_splash_bg),
+                contentDescription = null,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth(),
+                contentScale = ContentScale.FillWidth
             )
+
+            // Next Button on top of image
+            Button(
+                onClick = { onNextClick(selectedLanguage) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(72.dp)
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 16.dp),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = "Next →",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
     }
 }

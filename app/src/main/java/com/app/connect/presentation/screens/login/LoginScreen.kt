@@ -2,27 +2,19 @@ package com.app.connect.presentation.screens.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -34,11 +26,11 @@ import com.app.connect.R
 import com.app.connect.utils.PhoneNumberField
 import com.practice.jetpackpractice.presentation.common.components.LoadingDialog
 
-
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
-    onNavigateToOtp: (String) -> Unit
+    onNavigateToOtp: (String) -> Unit,
+    onNavigateToSignup: () -> Unit
 ) {
     val isLoading by viewModel.loading.collectAsState()
     var phoneNumber by remember { mutableStateOf("") }
@@ -49,57 +41,48 @@ fun LoginScreen(
             .background(Color.White)
     ) {
 
+        /* ---------------- Scrollable Content ---------------- */
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // App Logo
             Image(
                 painter = painterResource(id = R.drawable.ic_logo),
-                contentDescription = "App Logo",
-                modifier = Modifier.size(80.dp)
+                contentDescription = null,
+                modifier = Modifier.size(100.dp)
             )
 
-//            Spacer(modifier = Modifier.height(8.dp))
-//
-//            Text(
-//                text = "निर्वाचन",
-//                style = MaterialTheme.typography.titleMedium,
-//                color = MaterialTheme.colorScheme.primary
-//            )
-
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(70.dp))
 
             Text(
                 text = "Login",
-                style = MaterialTheme.typography.headlineMedium,
+                fontSize = 20.sp,
+                fontFamily = FontFamily(Font(R.font.popinbold)),
                 color = Color.Black
             )
 
-            Spacer(modifier = Modifier.height(4.dp))
-
             Text(
                 text = "Login with Phone number",
-                style = MaterialTheme.typography.bodyMedium,
+                fontSize = 12.sp,
+                fontFamily = FontFamily(Font(R.font.poppin_regular)),
                 color = Color.Gray
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(35.dp))
 
-            // Phone Number Field
             PhoneNumberField(
                 phoneNumber = phoneNumber,
                 onValueChange = { phoneNumber = it }
             )
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(50.dp))
 
-            // Login Button
             Button(
                 onClick = {
                     if (phoneNumber.length == 10) {
@@ -108,28 +91,59 @@ fun LoginScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(52.dp),
+                    .height(55.dp),
                 shape = RoundedCornerShape(12.dp)
             ) {
                 Text(
-                    text = "Login →",
-                    fontSize = 16.sp,
-                    fontFamily = FontFamily(Font(R.font.popinbold)),
-
-                    )
+                    text = "Login",
+                    fontSize = 15.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_semibold))
+                )
             }
 
-            Spacer(modifier = Modifier.weight(1f))
-
-            // Bottom city illustration
-//            Image(
-//                painter = painterResource(id = R.drawable.splash_bg),
-//                contentDescription = null,
-//                modifier = Modifier.fillMaxWidth(),
-//                contentScale = ContentScale.FillWidth
-//            )
+            // Space so content doesn't clash with bottom section
+            Spacer(modifier = Modifier.height(180.dp))
         }
 
+        /* ---------------- Bottom Background Image ---------------- */
+        Image(
+            painter = painterResource(id = R.drawable.img_splash_bg),
+            contentDescription = null,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .height(250.dp)
+                .fillMaxWidth(),
+            contentScale = ContentScale.Crop
+        )
+
+        /* ---------------- Signup Row (Above Image) ---------------- */
+        Row(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 24.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Not registered yet?",
+                fontSize = 14.sp,
+                fontFamily = FontFamily(Font(R.font.poppin_medium)),
+                color = Color.Gray
+            )
+
+            Spacer(modifier = Modifier.width(6.dp))
+
+            Text(
+                text = "Create an account",
+                fontSize = 14.sp,
+                fontFamily = FontFamily(Font(R.font.popinbold)),
+                color = Color(0xFF1976D2),
+                modifier = Modifier.clickable {
+                    onNavigateToSignup()
+                }
+            )
+        }
+
+        /* ---------------- Loading ---------------- */
         if (isLoading) {
             LoadingDialog()
         }

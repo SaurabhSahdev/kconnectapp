@@ -35,18 +35,7 @@ fun SignUpScreen(
         item { WhoAreYouSection() }
         item { PersonalDetailsSection() }
 
-//        item {
-//            // Example submit button
-//            Button(
-//                modifier = Modifier.padding(16.dp),
-//                onClick = {
-//                    // save profile completed flag
-//                    onSignupCompleted()
-//                }
-//            ) {
-//                Text("Continue")
-//            }
-//        }
+
     }
 }
 
